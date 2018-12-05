@@ -1,4 +1,4 @@
-### service worker的主要特点
+#### service worker的主要特点
 
 <ul>
   <li>独立线程</li>
@@ -9,3 +9,5 @@
   <li>必须在 HTTPS 环境下才能工作</li>
   <li>异步实现，内部大都是通过 Promise 实现</li>
 </ul>
+
+#### service worker 依赖：Promise，html5 fetch，Cache API，目前主流浏览器已经支持
