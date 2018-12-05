@@ -37,7 +37,9 @@
 
 <img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/change.png" />
 
-#### 这时候可以调用 self.skipWaiting() 来激活新线程
+#### 这时候可以调用 self.skipWaiting() 来激活新线程，流程图如下
+
+<img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/ws-update.png" />
 
 
 
