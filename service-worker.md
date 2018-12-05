@@ -30,7 +30,7 @@
 #### 当 service worker 注册的 JS 发生了变化
 
 <ul>
-  <li>waiting：可以理解为已经经过了 installed，等待激活的状态，可也以认为是卡在 activating 状态</li>
+  <li>waiting：这时会新开一个 service workder，而旧的 service worker正在运行，这时候新的 service worker 会停在 waiting 状态（可以理解为已经经过了 installed，等待激活的状态，可也以认为是卡在 activating 状态），而新线程等待的是：把旧线程注销，替换掉</li>
 </ul>
 
 示例如下：
