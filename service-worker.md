@@ -87,7 +87,9 @@ self.addEventListener('fetch',function(event) {
 });
 ```
 
+#### 缓存效果
 
+<img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/cache.png" />
 
 
 
