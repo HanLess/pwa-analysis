@@ -36,3 +36,8 @@
 示例如下：
 
 <img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/change.png" />
+
+#### 这时候可以调用 self.skipWaiting() 来激活新线程
+
+
+
