@@ -41,5 +41,53 @@
 
 <img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/ws-update.png" />
 
+<h2>配合 caches 做离线缓存</h2>
+
+```
+var VERSION = 'v1';
+// 缓存
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(VERSION).then(function(cache) {
+        console.log("installing start")
+      return cache.addAll([
+        './index.html',
+        'https://static-fe.daojia.com/pt/project/h5-login-components/dist/main.css',
+      ]);
+    })
+  );
+});
+
+// 捕获请求并返回缓存数据
+self.addEventListener('fetch',function(event) {
+    console.log("start fetch")
+
+    // 监听 fetch 事件拦截请求，event.respondWith 可以返回指定的资源
+    event.respondWith(
+        // caches.match 用来根据请求匹配缓存资源
+        caches.match(event.request).then(function(response){
+            // 如果匹配到了直接返回
+            if(response){
+                return response
+            }else{
+                // 没有匹配到，response是undefined，则进行http请求，并将结果返回
+                return fetch(event.request);
+            }
+        }).then(function(_response){
+            // 这里把缓存更新
+            caches.open(VERSION).then(function(cache) {
+                cache.put(event.request, _response);
+            });  
+            // 返回结果
+            return _response.clone();
+        }).catch(function(err){
+            return caches.match('./index.html')
+        })
+    )
+});
+```
+
+
+
 
 
