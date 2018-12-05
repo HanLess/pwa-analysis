@@ -11,3 +11,28 @@
 </ul>
 
 #### service worker 依赖：Promise，html5 fetch，Cache API，目前主流浏览器已经支持
+
+<h2>service worker 的生命周期</h2>
+
+#### 初始化时
+
+<ul>
+  <li>installing：注册成功后到达 installing，执行 install 回调函数</li>
+  <li>installed：安装成功，当 install 的回调函数执行成功后到达 installed</li>
+  <li>activating：这是一个过渡状态，如果当前没有其他的service worker 则跳过</li>
+  <li>activate：激活成功</li>
+</ul>
+
+示例如下：
+
+<img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/init.png" />
+
+#### 当 service worker 注册的 JS 发生了变化
+
+<ul>
+  <li>waiting：可以理解为已经经过了 installed，等待激活的状态，可也以认为是卡在 activating 状态</li>
+</ul>
+
+示例如下：
+
+<img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/change.png" />
