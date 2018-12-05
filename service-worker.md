@@ -12,7 +12,11 @@
 
 #### service worker 依赖：Promise，html5 fetch，Cache API，目前主流浏览器已经支持
 
-<h2>service worker 的生命周期</h2>
+<a href="#life">service worker 的生命周期</a>
+
+<a href="#cache">配合 caches 做离线缓存</a>
+
+<h2 id="life">service worker 的生命周期</h2>
 
 #### 初始化时
 
@@ -41,7 +45,7 @@
 
 <img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/ws-update.png" />
 
-<h2>配合 caches 做离线缓存</h2>
+<h2 id="cache">配合 caches 做离线缓存</h2>
 
 ```
 var VERSION = 'v1';
