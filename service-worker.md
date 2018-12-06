@@ -12,6 +12,8 @@
 
 #### service worker 依赖：Promise，html5 fetch，Cache API，目前主流浏览器已经支持
 
+#### 注册工作线程要在window onload之后，以免阻塞页面的加载，影响用户体验
+
 <a href="#life">service worker 的生命周期</a>
 
 <a href="#cache">配合 caches 做离线缓存</a>
