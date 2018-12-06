@@ -73,6 +73,16 @@ self.addEventListener('install', function(event) {
   );
 });
 
+// 缓存更新 
+self.addEventListener('activate', function(event) {  
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+        console.log(cacheNames)
+        // 可以在这里更新缓存的静态文件
+    })
+  );
+});
+
 // 捕获请求并返回缓存数据
 self.addEventListener('fetch',function(event) {
     console.log("start fetch")
@@ -106,5 +116,5 @@ self.addEventListener('fetch',function(event) {
 
 <img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/cache.png" />
 
-
+#### service worker 的更新与缓存资源的更新
 
