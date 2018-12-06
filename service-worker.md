@@ -53,6 +53,9 @@
 var VERSION = 'v1';
 // 缓存
 self.addEventListener('install', function(event) {
+  /*
+    event.waitUntil 的作用是是
+  */
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
         console.log("installing start")
