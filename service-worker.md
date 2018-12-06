@@ -49,6 +49,12 @@
 
 <h2 id="cache">配合 caches 做离线缓存</h2>
 
+#### fetch 的流
+
+fetch 中的 request / response 都使用了流的概念，而流只能使用一次，如果再次使用，需要 response.clone() 来得到流的副本
+
+event.respondWith 方法接收一个 promise 对象，且携带 response 信息，这个 response 就是返给页面的内容
+
 ```
 var VERSION = 'v1';
 // 缓存
@@ -87,7 +93,7 @@ self.addEventListener('fetch',function(event) {
             caches.open(VERSION).then(function(cache) {
                 cache.put(event.request, _response);
             });  
-            // 返回结果
+            // 返回结果，这里返回一个 response 的副本，因为 cache.put 已经使用过了 response 
             return _response.clone();
         }).catch(function(err){
             return caches.match('./index.html')
