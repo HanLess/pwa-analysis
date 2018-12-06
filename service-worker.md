@@ -54,7 +54,7 @@ var VERSION = 'v1';
 // 缓存
 self.addEventListener('install', function(event) {
   /*
-    event.waitUntil 的作用是是
+    event.waitUntil 的作用是延迟线程安装，状态处于 installing ，只有传入的 promise 处于 resolved 状态才会转为 installed
   */
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
