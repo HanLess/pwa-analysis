@@ -18,6 +18,8 @@
 
 <a href="#cache">配合 caches 做离线缓存</a>
 
+<a href="#message">service worker 与主线程通信</a>
+
 <h2 id="life">service worker 的生命周期</h2>
 
 #### 初始化时
@@ -166,4 +168,28 @@ self.addEventListener('fetch',function(event) {
 <ul>
   <li>在监听 fetch 拦截请求的时候，不再动态添加缓存，即只缓存 install 中 addAll 的资源，然后在监听 fetch 中返回</li>
 </ul>
+
+<h2 id="message">service worker 与主线程通信</h2>
+
+```
+// 主线程
+
+navigator.serviceWorker.controller.postMessage("hello world");
+
+navigator.serviceWorker.addEventListener("message",function(event){
+  console.log(event.data)
+})
+
+// service worker
+
+self.clients.matchAll().then(function(clients){
+    clients[0].postMessage("hello back")
+})
+
+self.addEventListener('message',event =>{
+    console.log("receive message" + event.data);
+});
+```
+
+
 
