@@ -79,6 +79,15 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
         console.log(cacheNames)
         // 可以在这里更新缓存的静态文件
+        return Promise.all(
+          cacheNames.map(function(cacheName) {
+            // 如果当前版本和缓存版本不一致
+            if (cacheName !== VERSION) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      
     })
   );
 });
