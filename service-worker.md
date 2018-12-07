@@ -164,6 +164,6 @@ self.addEventListener('fetch',function(event) {
 （3）只缓存静态资源，不缓存 ajax 请求返回的数据
 
 <ul>
-  <il>在监听 fetch 拦截请求的时候，不再动态添加缓存，即只缓存 install 中 addAll 的资源，然后在监听 fetch 中返回</li>
+  <li>在监听 fetch 拦截请求的时候，不再动态添加缓存，即只缓存 install 中 addAll 的资源，然后在监听 fetch 中返回</li>
 </ul>
 
