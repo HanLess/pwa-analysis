@@ -60,6 +60,10 @@ var VERSION = 'v1';
 // 缓存
 self.addEventListener('install', function(event) {
   /*
+    在service worker 改变时，skipWaiting 方法会使新的线程直接替换旧线程
+  */
+  self.skipWaiting();
+  /*
     event.waitUntil 的作用是延迟线程安装，状态处于 installing ，只有传入的 promise 处于 resolved 状态才会转为 installed
   */
   event.waitUntil(
@@ -126,4 +130,26 @@ self.addEventListener('fetch',function(event) {
 <img src="https://github.com/HanLess/pwa-analysis/blob/master/imgs/cache.png" />
 
 #### service worker 的更新与缓存资源的更新
+
+<ul>
+  <li>线程更新：执行 skipWaiting 方法，执行 install，activate 钩子函数</li>
+  <li>缓存更新：当资源有变化时，需要更新service worker中的缓存内容</li>
+</ul>
+
+#### 缓存更新的策略
+
+（1）不影响安装的资源预缓存
+
+<ul>
+  <li>分主次，主要资源放在 install 钩子中，使用 addAll 方法缓存</li>
+  <li>不重要资源可以放在 fetch 事件中，拦截请求并缓存</li> 
+  <li>目的：防止 addAll 过多，影响 service worker 安装</li>
+</ul>
+
+（2）动态存储
+
+<ul>
+  <li>对于 install 没有缓存的资源，且资源内容不常变化，可以通过监听 fetch 来拦截请求并缓存</li>
+</ul>
+
 
