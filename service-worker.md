@@ -171,6 +171,8 @@ self.addEventListener('fetch',function(event) {
 
 <h2 id="message">service worker 与主线程通信</h2>
 
+#### 这里不对通信功能的原理做讨论，以会用为主
+
 ```
 // 主线程
 
