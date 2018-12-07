@@ -56,6 +56,7 @@ fetch 中的 request / response 都使用了流的概念，而流只能使用一
 event.respondWith 方法接收一个 promise 对象，且携带 response 信息，这个 response 就是返给页面的内容
 
 ```
+// 这个 VERSION 一定要是字符串，因为 caches.keys 取出来的 key 值都会转为字符串
 var VERSION = 'v1';
 // 缓存
 self.addEventListener('install', function(event) {
@@ -97,6 +98,14 @@ self.addEventListener('activate', function(event) {
 });
 
 // 捕获请求并返回缓存数据
+/*
+  注意：一般来说 service worker 只用来缓存静态资源，
+        对于 ajax 请求的数据不会缓存，那这个时候就不需要执行这一步：
+        
+        caches.open(VERSION).then(function(cache) {
+            cache.put(event.request, _response);
+        });
+*/
 self.addEventListener('fetch',function(event) {
     console.log("start fetch")
 
@@ -112,7 +121,7 @@ self.addEventListener('fetch',function(event) {
                 return fetch(event.request);
             }
         }).then(function(_response){
-            // 这里把缓存更新
+            // 更新缓存，添加新的缓存
             caches.open(VERSION).then(function(cache) {
                 cache.put(event.request, _response);
             });  
@@ -152,4 +161,9 @@ self.addEventListener('fetch',function(event) {
   <li>对于 install 没有缓存的资源，且资源内容不常变化，可以通过监听 fetch 来拦截请求并缓存</li>
 </ul>
 
+（3）只缓存静态资源，不缓存 ajax 请求返回的数据
+
+<ul>
+  <il>在监听 fetch 拦截请求的时候，不再动态添加缓存，即只缓存 install 中 addAll 的资源，然后在监听 fetch 中返回</li>
+</ul>
 
