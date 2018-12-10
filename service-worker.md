@@ -58,6 +58,14 @@ fetch 中的 request / response 都使用了流的概念，而流只能使用一
 event.respondWith 方法接收一个 promise 对象，且携带 response 信息，这个 response 就是返给页面的内容
 
 ```
+// 注册
+navigator.serviceWorker.register("./type.js",{scope : "/"}).then(function(reg){
+
+}).catch(function(err){
+
+})
+
+
 // 这个 VERSION 一定要是字符串，因为 caches.keys 取出来的 key 值都会转为字符串
 var VERSION = 'v1';
 // 缓存
