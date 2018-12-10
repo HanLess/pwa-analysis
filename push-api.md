@@ -164,7 +164,7 @@ self.addEventListener('push', function (e) {
     if (e.data) {
         data = data.json();
         console.log('push的数据为：', data);
-        // 展示推送
+        // 展示推送，具体的用法参考 notification-api
         self.registration.showNotification(data.text);        
     } 
     else {
@@ -172,6 +172,8 @@ self.addEventListener('push', function (e) {
     }
 });
 ```
+
+<a href="https://github.com/HanLess/pwa-analysis/blob/master/notification-api.md">notification-api</a>
 
 ### 国内用不了 push service，被墙了，会报错：connect ETIMEDOUT xxx.xxx.xxx.xxx:443 
 
