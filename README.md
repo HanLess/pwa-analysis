@@ -2,9 +2,10 @@
 
 参考文章：https://huangxuan.me/2017/02/09/nextgen-web-pwa/
 
-pwa的四个内容
+pwa 的五个内容
 
 <ul>
+  <li>manifest：web app 的桌面化</li>
   <li>service worker</li>
   <li>cache 缓存</li>
   <li>push 消息推送</li>
