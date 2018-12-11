@@ -77,7 +77,7 @@ self.addEventListener('notificationclick', function (e) {
 });
 ```
 
-#### 以配合push api，监听到 push 事件后调用 showNotification，弹出推送消息
+#### 可以配合push api，监听到 push 事件后调用 showNotification，弹出推送消息
 
 #### 在监听到 notificationclick 事件后，可以通过 service worker 与主线程通信（详见 service worker 内容），对用户的动作进行处理
 
